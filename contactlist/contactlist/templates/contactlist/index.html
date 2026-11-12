@@ -1,12 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/root.css' %}">
   <title>Lista de Contatos</title>
 </head>
 <body>
-  <h1>Bem-vindo à Lista de Contatos</h1>
-  <p>Esta é a página inicial da sua aplicação de lista de contatos.</p>
+  <header class="header">
+    <h1>Bem-vindo à Lista de Contatos</h1>
+    <p>Esta é a página inicial da sua aplicação de lista de contatos.</p>
+  </header>
+
+  <section>
+    <div class="container-titulo">
+      <div class="titulo">
+        <h3>Contatos</h3>
+        <button type="button">
+          Adicionar novo contato
+        </button>
+      </div>
+      
+      <div class="input">
+        <input class="input-text" type="text" />
+      </div>
+    </div>
+
+
+  </section>
+
+  <footer align="center">
+    Feito com 🖤 por <a target="_blank" href="https://www.linkedin.com/in/arthurferreira-dev/">ARTHUR FERREIRA</a>
+  </footer>
 </body>
 </html>

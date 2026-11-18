@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Contact List{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'contacts/style.css' %}">
+</head>
+<body>
+    <header>
+        <a class="brand" href="{% url 'contacts:home' %}">📇 Contact List</a>
+        <nav>
+            <a href="{% url 'contacts:add' %}">Add</a>
+            <a href="{% url 'contacts:search' %}">Search</a>
+            <a href="{% url 'contacts:pick_edit' %}">Edit</a>
+            <a href="{% url 'contacts:pick_remove' %}">Remove</a>
+            <a href="{% url 'contacts:exit' %}">Exit</a>
+        </nav>
+    </header>
+    <main>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="msg {{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

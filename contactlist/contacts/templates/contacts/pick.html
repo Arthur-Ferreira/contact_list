@@ -1,15 +1,14 @@
 {% extends "contacts/base.html" %} {% block content %}
 <h1>
-  {% if mode == "edit" %}Select a contact to edit{% else %}Select a contact to
-  remove{% endif %}
+  {% if mode == "edit" %}Selecione um contato para editar{% else %}Selecione um contato para remover{% endif %}
 </h1>
 {% if contacts %}
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Phone</th>
-      <th>Email</th>
+      <th>Nome</th>
+      <th>Telefone</th>
+      <th>E-mail</th>
       <th></th>
     </tr>
   </thead>
@@ -29,7 +28,7 @@
           onsubmit="return confirm('Delete {{ c.name|escapejs }}?')"
         >
           {% csrf_token %}
-          <button class="btn danger" type="submit">Remove</button>
+          <button class="btn danger" type="submit">Remover</button>
         </form>
         {% endif %}
       </td>
@@ -39,6 +38,6 @@
 </table>
 {% else %}
 <p class="muted">
-  No contacts yet. <a href="{% url 'contacts:add' %}">Add one</a>.
+  Ainda sem nenhuma contato. <a href="{% url 'contacts:add' %}">Adicione um novo</a>.
 </p>
 {% endif %} {% endblock %}

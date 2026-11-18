@@ -1,29 +1,29 @@
 {% extends "contacts/base.html" %} {% block content %}
-<h1>Search contacts</h1>
+<h1>Pesquisar contato</h1>
 <form method="get" class="card inline">
   <select name="by">
-    <option value="name" {% if by="" ="name" %}selected{% endif %}>Name</option>
-    <option value="phone" {% if by="" ="phone" %}selected{% endif %}>
-      Phone
+    <option value="name" {% if by == "name" %}selected{% endif %}>Nome</option>
+    <option value="phone" {% if by == "phone" %}selected{% endif %}>
+      Telefone
     </option>
   </select>
   <input
     type="text"
     name="q"
     value="{{ q }}"
-    placeholder="Type part of the name or number"
+    placeholder="Escreva uma parte do número"
     autofocus
   />
-  <button class="btn primary" type="submit">Search</button>
+  <button class="btn primary" type="submit">Pesquisar</button>
 </form>
 
 {% if results is not None %} {% if results %}
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Phone</th>
-      <th>Email</th>
+      <th>Nome</th>
+      <th>Telefone</th>
+      <th>E-mail</th>
     </tr>
   </thead>
   <tbody>
@@ -37,5 +37,5 @@
   </tbody>
 </table>
 {% else %}
-<p class="muted">No contacts found.</p>
+<p class="muted">Contato não encontrado.</p>
 {% endif %} {% endif %} {% endblock %}

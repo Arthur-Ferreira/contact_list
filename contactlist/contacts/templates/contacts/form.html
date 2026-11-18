@@ -11,8 +11,8 @@
   </div>
   {% endfor %}
   <div class="actions">
+    <a class="btn" href="{% url 'contacts:home' %}">Cancelar</a>
     <button class="btn primary" type="submit">{{ submit }}</button>
-    <a class="btn" href="{% url 'contacts:home' %}">Cancel</a>
   </div>
 </form>
 {% endblock %}

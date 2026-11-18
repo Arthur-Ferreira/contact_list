@@ -1,27 +1,41 @@
-{% extends "contacts/base.html" %}
-{% block content %}
+{% extends "contacts/base.html" %} {% block content %}
 <h1>Search contacts</h1>
 <form method="get" class="card inline">
-    <select name="by">
-        <option value="name" {% if by == "name" %}selected{% endif %}>Name</option>
-        <option value="phone" {% if by == "phone" %}selected{% endif %}>Phone</option>
-    </select>
-    <input type="text" name="q" value="{{ q }}" placeholder="Type part of the name or number" autofocus>
-    <button class="btn primary" type="submit">Search</button>
+  <select name="by">
+    <option value="name" {% if by="" ="name" %}selected{% endif %}>Name</option>
+    <option value="phone" {% if by="" ="phone" %}selected{% endif %}>
+      Phone
+    </option>
+  </select>
+  <input
+    type="text"
+    name="q"
+    value="{{ q }}"
+    placeholder="Type part of the name or number"
+    autofocus
+  />
+  <button class="btn primary" type="submit">Search</button>
 </form>
 
-{% if results is not None %}
-    {% if results %}
-    <table>
-        <thead><tr><th>Name</th><th>Phone</th><th>Email</th></tr></thead>
-        <tbody>
-        {% for c in results %}
-            <tr><td>{{ c.name }}</td><td>{{ c.phone }}</td><td>{{ c.email }}</td></tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    {% else %}
-    <p class="muted">No contacts found.</p>
-    {% endif %}
-{% endif %}
-{% endblock %}
+{% if results is not None %} {% if results %}
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in results %}
+    <tr>
+      <td>{{ c.name }}</td>
+      <td>{{ c.phone }}</td>
+      <td>{{ c.email }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No contacts found.</p>
+{% endif %} {% endif %} {% endblock %}

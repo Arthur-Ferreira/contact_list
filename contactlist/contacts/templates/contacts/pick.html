@@ -1,29 +1,44 @@
-{% extends "contacts/base.html" %}
-{% block content %}
-<h1>{% if mode == "edit" %}Select a contact to edit{% else %}Select a contact to remove{% endif %}</h1>
+{% extends "contacts/base.html" %} {% block content %}
+<h1>
+  {% if mode == "edit" %}Select a contact to edit{% else %}Select a contact to
+  remove{% endif %}
+</h1>
 {% if contacts %}
 <table>
-    <thead><tr><th>Name</th><th>Phone</th><th>Email</th><th></th></tr></thead>
-    <tbody>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
     {% for c in contacts %}
-        <tr>
-            <td>{{ c.name }}</td><td>{{ c.phone }}</td><td>{{ c.email }}</td>
-            <td class="right">
-                {% if mode == "edit" %}
-                <a class="btn" href="{% url 'contacts:edit' c.pk %}">Edit</a>
-                {% else %}
-                <form method="post" action="{% url 'contacts:delete' c.pk %}"
-                      onsubmit="return confirm('Delete {{ c.name|escapejs }}?')">
-                    {% csrf_token %}
-                    <button class="btn danger" type="submit">Remove</button>
-                </form>
-                {% endif %}
-            </td>
-        </tr>
+    <tr>
+      <td>{{ c.name }}</td>
+      <td>{{ c.phone }}</td>
+      <td>{{ c.email }}</td>
+      <td class="right">
+        {% if mode == "edit" %}
+        <a class="btn" href="{% url 'contacts:edit' c.pk %}">Edit</a>
+        {% else %}
+        <form
+          method="post"
+          action="{% url 'contacts:delete' c.pk %}"
+          onsubmit="return confirm('Delete {{ c.name|escapejs }}?')"
+        >
+          {% csrf_token %}
+          <button class="btn danger" type="submit">Remove</button>
+        </form>
+        {% endif %}
+      </td>
+    </tr>
     {% endfor %}
-    </tbody>
+  </tbody>
 </table>
 {% else %}
-<p class="muted">No contacts yet. <a href="{% url 'contacts:add' %}">Add one</a>.</p>
-{% endif %}
-{% endblock %}
+<p class="muted">
+  No contacts yet. <a href="{% url 'contacts:add' %}">Add one</a>.
+</p>
+{% endif %} {% endblock %}

@@ -18,14 +18,14 @@ def add(request):
             try:
                 form.save()
             except DatabaseError:
-                messages.error(request, "Error adding the contact. Please try again.")
+                messages.error(request, "Erro ao adicionar novo contato. Por favor, tente novamente.")
             else:
-                messages.success(request, "Contact added successfully!")
+                messages.success(request, "Contato adicionado com sucesso!")
                 return redirect("contacts:home")
         else:
-            messages.error(request, "Could not add the contact. Fix the errors below.")
+            messages.error(request, "Não foi possivel adicionar o contato. Por favor, revise o erro abaixo.")
     return render(request, "contacts/form.html",
-                  {"form": form, "title": "Add contact", "submit": "Save"})
+                  {"form": form, "title": "Adicionar contato", "submit": "Salvar"})
 
 
 def search(request):
@@ -55,31 +55,28 @@ def edit(request, pk):
             try:
                 form.save()
             except DatabaseError:
-                messages.error(request, "Error updating the contact. Please try again.")
+                messages.error(request, "Erro ao atualizar o contato. Por favor, tente novamente.")
             else:
-                messages.success(request, "Contact updated successfully!")
+                messages.success(request, "Contato atualizado com sucesso!")
                 return redirect("contacts:pick_edit")
         else:
-            messages.error(request, "Could not update the contact. Fix the errors below.")
+            messages.error(request, "Contato não pode ser editado. Por favor, revise o erro abaixo.")
     return render(request, "contacts/form.html",
-                  {"form": form, "title": "Edit contact", "submit": "Update"})
+                  {"form": form, "title": "Editar contato", "submit": "Atualizar"})
 
 
 @require_POST
 def delete(request, pk):
     contact = Contact.objects.filter(pk=pk).first()
     if contact is None:
-        messages.error(request, "Error deleting: contact not found.")
+        messages.error(request, "Erro ao excluir: contato não encontrado.")
     else:
         name = contact.name
         try:
             contact.delete()
         except DatabaseError:
-            messages.error(request, "Error deleting the contact. Please try again.")
+            messages.error(request, "Erro ao excluir o contato. Por favor, tente novamente.")
         else:
-            messages.success(request, f"Contact “{name}” deleted successfully!")
+            messages.success(request, f"Contato “{name}” excluido com sucesso!")
     return redirect("contacts:pick_remove")
 
-
-def exit_page(request):
-    return render(request, "contacts/exit.html")
